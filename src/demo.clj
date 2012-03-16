@@ -23,23 +23,23 @@
       colour {:red (atom 0.0) :green (atom 0.0) :blue (atom 0.0)}] 
   (osc-handle 
     (osc-server 7000) "/audiocubes"
-    (mk-cube-handler {:sensor-updated ; Sensor value updated
-                      (fn [cube face sensor-value] 
-                        (do
-                          (case face
-                            0
-                            (do
-                              (reset! (colour :red) (* sensor-value 255))
-                              (ctl wobble :base-note (+ 50 (* sensor-value 60))))
-                            1
-                            (do
-                              (reset! (colour :green) (* sensor-value 255))
-                              (ctl wobble :echo (* sensor-value 40)))                           
-                            2
-                            (do
-                              (reset! (colour :blue) (* sensor-value 255))
-                              (ctl wobble :noise-rate (+ 1 (* sensor-value 40))))
-                            nil))
-                        (set-colour client cube @(colour :red) @(colour :green) @(colour :blue))
-                        )
-                      })))
+    (mk-cube-handler :sensor-updated ; Sensor value updated
+                     (fn [cube face sensor-value] 
+                       (do
+                         (case face
+                           0
+                           (do
+                             (reset! (colour :red) (* sensor-value 255))
+                             (ctl wobble :base-note (+ 50 (* sensor-value 60))))
+                           1
+                           (do
+                             (reset! (colour :green) (* sensor-value 255))
+                             (ctl wobble :echo (* sensor-value 40)))                           
+                           2
+                           (do
+                             (reset! (colour :blue) (* sensor-value 255))
+                             (ctl wobble :noise-rate (+ 1 (* sensor-value 40))))
+                           nil))
+                       (set-colour client cube @(colour :red) @(colour :green) @(colour :blue))
+                       )
+                     )))
