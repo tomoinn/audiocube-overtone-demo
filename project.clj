@@ -1,5 +1,5 @@
-(defproject audiocube-demo "1.0"
-  :dependencies [[org.clojure/clojure "1.3.0"]
+(defproject audiocube-demo "1.1-SNAPSHOT"
+  :dependencies [[org.clojure/clojure "1.5.1"]
                  [overtone "0.6.0"]
-				 [overtone/overtone.device.audiocubes "0.1.3-SNAPSHOT"]]
-  :dev-dependencies [[lein-eclipse "1.0.0"]])
+                 [overtone/overtone.device.audiocubes "0.1.4-SNAPSHOT"]]
+  :plugins [[no-man-is-an-island/lein-eclipse "2.0.0"]])
